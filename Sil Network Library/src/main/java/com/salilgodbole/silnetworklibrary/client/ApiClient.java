@@ -10,7 +10,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.salilgodbole.silnetworklibrary.AppError;
 import com.salilgodbole.silnetworklibrary.Callback;
 import com.salilgodbole.silnetworklibrary.response.AccessToken;
-import com.salilgodbole.silnetworklibrary.response.PaymentResponse;
 import com.salilgodbole.silnetworklibrary.response.Place;
 
 import org.json.JSONArray;
@@ -142,8 +141,46 @@ public class ApiClient extends BaseClient {
         }
     }
 
-    public void payRent(final AccessToken accessToken, final String cardNumber, final String cardName, final String cardExpiration, final String cardCode, final Callback<PaymentResponse> callback) {
-//        /api/v1/rent
+    public void payRent(final AccessToken accessToken, final String cardNumber, final String cardName, final String cardExpiration, final String cardCode, final Callback<String> callback) {
+        if (accessToken != null) {
+            String url = mEnvironment.getBaseUrl() + "/api/v1/rent";
+
+            JSONObject jsonObject = new JSONObject();
+            try {
+
+                jsonObject.put("number", cardNumber);
+                jsonObject.put("name", cardName);
+                jsonObject.put("expiration", cardExpiration);
+                jsonObject.put("code", cardCode);
+
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        sendResponse(callback, response.optString("message"));
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        sendError(callback, error);
+                    }
+                }) {
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String, String> headers = new HashMap<>();
+
+                        headers.put("Authorization", accessToken.getToken());
+                        return headers;
+                    }
+                };
+
+                networkClient.addToRequestQueue(request);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            sendError(callback, new AppError("Access token should not be null"));
+        }
     }
 
     public void destroy() {

@@ -94,6 +94,7 @@ public class RentCollectionDialog extends DialogFragment implements View.OnClick
             String cardExpiration = cardExpiryMonth + "/" + cardExpiryYear;
 
             mListener.onPayRentClicked(cardNumber, cardName, cardExpiration, cardCode);
+            dismiss();
         }
     }
 
