@@ -19,6 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_card_number"
+            android:inputType="number"
+            android:maxLength="19"
             />
     </android.support.design.widget.TextInputLayout>
 
@@ -50,6 +52,7 @@
             android:layout_marginEnd="@dimen/dimen_16_dp"
             android:layout_marginRight="@dimen/dimen_16_dp"
             android:hint="@string/hint_expiry_month"
+            android:inputType="number"
             android:maxLength="2"
             />
 
@@ -67,6 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_expiry_year"
+            android:inputType="number"
             android:maxLength="2"
             />
     </android.support.design.widget.TextInputLayout>
@@ -83,6 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_card_code"
+            android:inputType="number"
             android:maxLength="4"
             />
     </android.support.design.widget.TextInputLayout>
@@ -96,6 +101,7 @@
         android:layout_marginBottom="@dimen/dimen_16_dp"
         android:layout_marginTop="@dimen/dimen_64_dp"
         android:background="@color/colorPrimary"
+        android:imeOptions="actionDone"
         android:text="Rent"
         android:textColor="@color/textColor"/>
 
