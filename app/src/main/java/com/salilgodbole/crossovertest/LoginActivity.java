@@ -52,7 +52,15 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Login
         mApiClient = new ApiClient(mContext, Environment.LOCAL);
         mLoginPresenter = new LoginPresenter(mApiClient, this);
 
-        showLoginFragment();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+        String token = preferences.getString(Constants.ACCESS_TOKEN_KEY, null);
+
+        if (token != null) {
+            showRentCycleActivity();
+        } else {
+            // Since the token is null, it means that the user is not logged id. Prompt the user to login.
+            showLoginFragment();
+        }
     }
 
     private void showLoginFragment() {
