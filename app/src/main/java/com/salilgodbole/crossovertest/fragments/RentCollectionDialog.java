@@ -1,6 +1,5 @@
 package com.salilgodbole.crossovertest.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
@@ -93,7 +92,9 @@ public class RentCollectionDialog extends DialogFragment implements View.OnClick
 
             String cardExpiration = cardExpiryMonth + "/" + cardExpiryYear;
 
-            mListener.onPayRentClicked(cardNumber, cardName, cardExpiration, cardCode);
+            if (mListener != null) {
+                mListener.onPayRentClicked(cardNumber, cardName, cardExpiration, cardCode);
+            }
             dismiss();
         }
     }
@@ -102,15 +103,8 @@ public class RentCollectionDialog extends DialogFragment implements View.OnClick
         Snackbar.make(mParentLayout, message, Snackbar.LENGTH_SHORT);
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof Listener) {
-            mListener = (Listener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement RentCollectionDialog.Listener");
-        }
+    public void setListener(Listener listener) {
+        mListener = listener;
     }
 
     @Override

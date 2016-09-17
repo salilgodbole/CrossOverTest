@@ -44,6 +44,7 @@ public class RentCyclesActivity extends FragmentActivity implements RentCycleVie
         mApiClient = new ApiClient(mContext, Environment.LOCAL);
         mRentCyclesPresenter = new RentCyclesPresenter(mApiClient, this);
         mRentCollectionDialog = RentCollectionDialog.newInstance();
+        mRentCollectionDialog.setListener(this);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()

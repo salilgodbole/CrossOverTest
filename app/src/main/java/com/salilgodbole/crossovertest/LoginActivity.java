@@ -3,14 +3,19 @@ package com.salilgodbole.crossovertest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
+import com.salilgodbole.crossovertest.fragments.HomeFragment;
 import com.salilgodbole.crossovertest.fragments.LoginFragment;
 import com.salilgodbole.crossovertest.presenter.LoginPresenter;
 import com.salilgodbole.crossovertest.utils.Utils;
@@ -23,7 +28,7 @@ import com.salilgodbole.silnetworklibrary.response.AccessToken;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoginView, LoginFragment.LoginFragmentListener {
+public class LoginActivity extends AppCompatActivity implements LoginView, LoginFragment.LoginFragmentListener, HomeFragment.Listener {
     private Context mContext = this;
     private ApiClient mApiClient = null;
     private LoginPresenter mLoginPresenter = null;
@@ -57,12 +62,29 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Login
             showRentCycleActivity();
         } else {
             // Since the token is null, it means that the user is not logged id. Prompt the user to login.
-            showLoginFragment();
+            showHomeFragment();
+        }
+
+        // Set action bar color. Available only on android version Lollipop or higher.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.parseColor("#00796B"));
         }
     }
 
-    private void showLoginFragment() {
-        LoginFragment loginFragment = new LoginFragment();
+    private void showHomeFragment() {
+        HomeFragment homeFragment = new HomeFragment();
+        homeFragment.setListener(this);
+
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction()
+                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+                .add(R.id.container, homeFragment);
+        fragmentTransaction.commit();
+    }
+
+    private void showLoginFragment(int loginType) {
+        LoginFragment loginFragment = LoginFragment.newInstance(loginType);
         loginFragment.setListener(this);
 
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction()
@@ -86,6 +108,16 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Login
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(Constants.ACCESS_TOKEN_KEY, accessToken.getToken());
         editor.apply();
+    }
+
+    @Override
+    public void onSignUpClicked() {
+        showLoginFragment(LoginFragment.LOGIN_TYPE_SIGNUP);
+    }
+
+    @Override
+    public void onSignInClicked() {
+        showLoginFragment(LoginFragment.LOGIN_TYPE_SIGNIN);
     }
 
     @Override
@@ -135,6 +167,4 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Login
         mFrameLayout = null;
         mContext = null;
     }
-
-
 }
