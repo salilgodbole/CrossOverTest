@@ -64,37 +64,35 @@ public class RentCollectionDialog extends DialogFragment implements View.OnClick
             String cardExpiryYear = mEditCardExpiryYear.getText().toString();
             String cardCode = mEditCardCode.getText().toString();
 
-            if (!TextUtils.isEmpty(cardNumber)) {
+            if (TextUtils.isEmpty(cardNumber)) {
                 showSnackBarMessage(getString(R.string.enter_card_number));
 
                 return;
             }
 
-            if (!TextUtils.isEmpty(cardName)) {
+            if (TextUtils.isEmpty(cardName)) {
                 showSnackBarMessage(getString(R.string.enter_card_name));
                 return;
             }
 
-            if (!TextUtils.isEmpty(cardExpiryMonth)) {
+            if (TextUtils.isEmpty(cardExpiryMonth)) {
                 showSnackBarMessage(getString(R.string.enter_card_expiry_month));
                 return;
             }
 
-            if (!TextUtils.isEmpty(cardExpiryYear)) {
+            if (TextUtils.isEmpty(cardExpiryYear)) {
                 showSnackBarMessage(getString(R.string.enter_card_expiry_year));
                 return;
             }
 
-            if (!TextUtils.isEmpty(cardCode)) {
+            if (TextUtils.isEmpty(cardCode)) {
                 showSnackBarMessage(getString(R.string.enter_card_code));
                 return;
             }
 
             String cardExpiration = cardExpiryMonth + "/" + cardExpiryYear;
 
-            if (mListener != null) {
-                mListener.onPayRentClicked(cardNumber, cardName, cardExpiration, cardCode);
-            }
+            mListener.onPayRentClicked(cardNumber, cardName, cardExpiration, cardCode);
             dismiss();
         }
     }
