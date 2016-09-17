@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/parent_layout_rent_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_32_dp"
+                android:background="@color/colorPrimaryLight"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_16_dp">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/layout_card_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/edit_card_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_card_number"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/layout_card_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_card_number">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/edit_card_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_card_name"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/layout_card_expiry_month"
+        android:layout_width="@dimen/dimen_128_dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_card_name">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/edit_card_expiry_month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_16_dp"
+            android:layout_marginRight="@dimen/dimen_16_dp"
+            android:hint="@string/hint_expiry_month"
+            android:maxLength="2"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/layout_card_expiry_year"
+        android:layout_width="@dimen/dimen_128_dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_card_name"
+        android:layout_toRightOf="@id/layout_card_expiry_month">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/edit_card_expiry_year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_expiry_year"
+            android:maxLength="2"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/layout_card_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_card_expiry_month">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/edit_card_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_card_code"
+            android:maxLength="4"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_rent"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_card_code"
+        android:layout_marginBottom="@dimen/dimen_16_dp"
+        android:layout_marginTop="@dimen/dimen_64_dp"
+        android:background="@color/colorPrimary"
+        android:text="Rent"
+        android:textColor="@color/textColor"/>
+
+</RelativeLayout>

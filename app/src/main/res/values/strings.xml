@@ -10,28 +10,24 @@
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_next">Next</string>
     <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
     <string name="login_screen_welcome">Welcome !</string>
     <string name="title_signin">Sign In</string>
     <string name="title_signup">Sign Up</string>
-    <string name="login_screen_mobile_no_send_code_message">We will text you confirmation \n code to get started</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="code_verify_screen_title">Verifying your number</string>
-    <string name="verification_code_sent_message"> </string>
-    <string name="verify_code_screen_enter_otp_manually">Please enter activation code manually</string>
-    <string name="verification_code_screen_btn_verify_code">Verify</string>
-    <string name="verification_code_screen_edit_otp_hint">Enter OTP</string>
-    <string name="verification_code_sent_message_with_format">We have sent an SMS with activation code to +91 %s</string>
-    <string name="verification_code_screen_btn_resend_otp">Resend OTP</string>
     <string name="title_activity_rent_bicycle">Rent Bicycle</string>
     <string name="hint_password">Password</string>
     <string name="hint_confirm_password">Confirm Password</string>
     <string name="title_activity_rent_cycles">Rent Cycles</string>
+    <string name="hint_card_number">Card Number</string>
+    <string name="hint_card_name">Name on card</string>
+    <string name="hint_expiry_month">Month</string>
+    <string name="hint_expiry_year">Year</string>
+    <string name="hint_card_code">Card Code</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_card_number">Enter Card Number</string>
+    <string name="enter_card_name">Enter name on card</string>
+    <string name="enter_card_expiry_month">Expiry Month</string>
+    <string name="enter_card_expiry_year">Expiry Year</string>
+    <string name="enter_card_code">Enter Card Code</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.salilgodbole.crossovertest.view;
 
+import com.salilgodbole.silnetworklibrary.AppError;
 import com.salilgodbole.silnetworklibrary.response.Place;
 
 import java.util.List;
@@ -10,4 +11,7 @@ import java.util.List;
 public interface RentCycleView {
     void onReceivedPlaces(List<Place> placeList);
 
+    void onRentCollectionSuccessful();
+
+    void onRentCollectionUnsuccessful(AppError appError);
 }

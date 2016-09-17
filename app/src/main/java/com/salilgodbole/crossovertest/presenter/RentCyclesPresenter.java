@@ -5,6 +5,7 @@ import com.salilgodbole.silnetworklibrary.AppError;
 import com.salilgodbole.silnetworklibrary.Callback;
 import com.salilgodbole.silnetworklibrary.client.ApiClient;
 import com.salilgodbole.silnetworklibrary.response.AccessToken;
+import com.salilgodbole.silnetworklibrary.response.PaymentResponse;
 import com.salilgodbole.silnetworklibrary.response.Place;
 
 import java.util.List;
@@ -22,8 +23,18 @@ public class RentCyclesPresenter {
         mRentCycleView = rentCycleView;
     }
 
-    public void rentCycle() {
+    public void rentCycle(AccessToken accessToken, String cardNumber, String cardName, String cardExpiration, String cardCode) {
+        mApiClient.payRent(accessToken, cardNumber, cardName, cardExpiration, cardCode, new Callback<PaymentResponse>() {
+            @Override
+            public void success(PaymentResponse paymentResponse) {
+                mRentCycleView.onRentCollectionSuccessful();
+            }
 
+            @Override
+            public void error(AppError appError) {
+                mRentCycleView.onRentCollectionUnsuccessful(appError);
+            }
+        });
     }
 
     public void getPlaces(AccessToken accessToken) {

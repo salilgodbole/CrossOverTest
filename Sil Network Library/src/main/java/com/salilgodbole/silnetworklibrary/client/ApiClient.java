@@ -142,7 +142,7 @@ public class ApiClient extends BaseClient {
         }
     }
 
-    public void payRent(final AccessToken accessToken, final Callback<PaymentResponse> callback) {
+    public void payRent(final AccessToken accessToken, final String cardNumber, final String cardName, final String cardExpiration, final String cardCode, final Callback<PaymentResponse> callback) {
 //        /api/v1/rent
     }
 
