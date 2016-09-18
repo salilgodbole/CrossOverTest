@@ -26,7 +26,7 @@ public class RentCyclesPresenter {
         mApiClient.payRent(accessToken, cardNumber, cardName, cardExpiration, cardCode, new Callback<String>() {
             @Override
             public void success(String message) {
-                mRentCycleView.onRentCollectionSuccessful();
+                mRentCycleView.onRentCollectionSuccessful(message);
             }
 
             @Override

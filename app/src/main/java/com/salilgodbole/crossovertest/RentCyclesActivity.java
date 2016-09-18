@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -101,7 +102,8 @@ public class RentCyclesActivity extends FragmentActivity implements RentCycleVie
     }
 
     @Override
-    public void onRentCollectionSuccessful() {
+    public void onRentCollectionSuccessful(String message) {
+        Toast.makeText(RentCyclesActivity.this, message, Toast.LENGTH_SHORT).show();
         mRentCollectionDialog.dismiss();
     }
 

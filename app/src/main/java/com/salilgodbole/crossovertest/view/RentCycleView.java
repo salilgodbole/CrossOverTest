@@ -11,7 +11,7 @@ import java.util.List;
 public interface RentCycleView {
     void onReceivedPlaces(List<Place> placeList);
 
-    void onRentCollectionSuccessful();
+    void onRentCollectionSuccessful(String message);
 
     void onRentCollectionUnsuccessful(AppError appError);
 }
